@@ -5,7 +5,8 @@ import android.os.Bundle;
 import android.support.test.runner.AndroidJUnitRunner;
 
 /**
- * Created by paulbrower on 12/9/16.
+ * overriden instrumentation runner.  This will allow us to set the {@link TestDependencySupplier}
+ * as the Injector class and will be picked up in the SampleApplication object
  */
 
 public class CustomInstrumentationRunner extends AndroidJUnitRunner {
