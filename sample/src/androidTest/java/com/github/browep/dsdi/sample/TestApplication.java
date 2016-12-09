@@ -12,6 +12,12 @@ import com.github.browep.dsdi.DependencySupplier;
 public class TestApplication extends SampleApplication {
 
     @Override
+    public void onCreate() {
+        super.onCreate();
+        throw new RuntimeException("RAN!");
+    }
+
+    @Override
     protected DependencySupplier setupDependencySupplier() {
         return new TestDependencySupplier();
     }

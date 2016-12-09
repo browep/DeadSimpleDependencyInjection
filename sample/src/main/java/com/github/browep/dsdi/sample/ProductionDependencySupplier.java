@@ -25,7 +25,7 @@ public class ProductionDependencySupplier extends DependencySupplier {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
-        networkAdapter = retrofit.create(NetworkAdapter.class);
+        networkAdapter = new NetworkAdapter(retrofit.create(Server.class));
     }
 
     @Override

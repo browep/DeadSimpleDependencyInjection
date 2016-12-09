@@ -17,7 +17,7 @@ import retrofit2.Response;
 public class MainActivity extends AppCompatActivity {
 
     @Inject
-    NetworkAdapter networkAdapter;
+    private NetworkAdapter networkAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

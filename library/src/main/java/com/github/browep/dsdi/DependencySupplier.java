@@ -37,9 +37,10 @@ public abstract class DependencySupplier {
         if (obj == null) {
             throw new IllegalArgumentException("obj cannot be null");
         } else {
-            Field[] fields = obj.getClass().getFields();
+            Field[] fields = obj.getClass().getDeclaredFields();
             for (Field field : fields) {
                 if (field.isAnnotationPresent(Inject.class)) {
+                    field.setAccessible(true);
                     Class fieldClass = field.getType();
                     Object supply = supply(fieldClass);
                     log("injection: (" + obj +") " + field.getName() +" -> " + supply);
