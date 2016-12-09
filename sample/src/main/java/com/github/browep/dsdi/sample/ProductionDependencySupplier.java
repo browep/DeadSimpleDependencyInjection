@@ -17,7 +17,7 @@ public class ProductionDependencySupplier extends DependencySupplier {
         this(false);
     }
 
-    public ProductionDependencySupplier(boolean log) {
+    public ProductionDependencySupplier(Boolean log) {
         super(log);
 
         Retrofit retrofit =  new Retrofit.Builder()

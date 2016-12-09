@@ -20,6 +20,11 @@ import retrofit2.http.Path;
  */
 
 public class TestDependencySupplier extends ProductionDependencySupplier {
+
+    public TestDependencySupplier(Boolean log) {
+        super(log);
+    }
+
     @Override
     public Object supply(Class aClass) throws IllegalArgumentException {
         if (aClass.equals(NetworkAdapter.class)) {

@@ -22,7 +22,7 @@ public abstract class DependencySupplier {
      *
      * @param log whether the injector should log what its doing, useful for debugging
      */
-    public DependencySupplier(boolean log) {
+    public DependencySupplier(Boolean log) {
         this.log = log;
     }
 
