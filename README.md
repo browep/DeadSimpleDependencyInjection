@@ -67,7 +67,7 @@ public class SampleApplication extends android.app.Application {
 
 }
 ````
-`ProductionDependencySupplier` is a class that extends DepedencySupplier.  In `apply` you override the functionality that creates the dependencies when you need them.  You can create singletons by keeping them as fields and then returning the fields when needed as done below.
+`ProductionDependencySupplier` is a class that extends DepedencySupplier.  In `supply` you override the functionality that creates the dependencies when you need them.  You can create singletons by keeping them as fields and then returning the fields when needed as done below.
 ````
 public class ProductionDependencySupplier extends DependencySupplier {
 
