@@ -16,19 +16,26 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.Path;
 
 /**
- * create test dependencies for testing.  No calls should go out over the network
+ * create test dependencies for testing.  No calls should go out over the network, nothing persisted
+ * to disk
  */
 
 public class TestDependencySupplier extends ProductionDependencySupplier {
 
+    private final Dao dao;
+
     public TestDependencySupplier(Boolean log) {
         super(log);
+
+        dao = new TestDao();
     }
 
     @Override
     public Object supply(Class aClass) throws IllegalArgumentException {
         if (aClass.equals(NetworkAdapter.class)) {
             return new MockNetworkAdapter();
+        } else if (aClass.equals(Dao.class)) {
+            return dao;
         } else {
             return super.supply(aClass);
         }

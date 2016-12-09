@@ -19,6 +19,9 @@ public class MainActivity extends AppCompatActivity {
     @Inject
     private NetworkAdapter networkAdapter;
 
+    @Inject
+    private Dao dao;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

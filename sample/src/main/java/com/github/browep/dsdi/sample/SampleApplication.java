@@ -13,12 +13,20 @@ public class SampleApplication extends android.app.Application {
     public static final String DSDI_INJECTOR_CLASS = "dsdi.injector_class";
     private DependencySupplier dependencySupplier;
 
+    private static SampleApplication INSTANCE;
+
     @Override
     public void onCreate() {
         super.onCreate();
 
+        INSTANCE = this;
+
         // setup dependency injector
         dependencySupplier = setupDependencySupplier();
+    }
+
+    public static SampleApplication getInstance() {
+        return INSTANCE;
     }
 
     protected DependencySupplier setupDependencySupplier() {
