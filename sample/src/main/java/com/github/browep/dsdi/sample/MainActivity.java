@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
 
-        networkAdapter.listRepos("browep").enqueue(new Callback<List<Repo>>() {
+        networkAdapter.listRepos("browep", new Callback<List<Repo>>() {
             @Override
             public void onResponse(Call<List<Repo>> call, Response<List<Repo>> response) {
                 StringBuilder repoNames = new StringBuilder();

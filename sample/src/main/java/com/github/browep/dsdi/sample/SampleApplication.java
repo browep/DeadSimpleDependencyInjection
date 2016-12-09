@@ -15,11 +15,11 @@ public class SampleApplication extends android.app.Application {
         super.onCreate();
 
         // setup dependency injector
-        setupDependencySupplier();
+        dependencySupplier = setupDependencySupplier();
     }
 
-    protected void setupDependencySupplier() {
-        dependencySupplier = new ProductionDependencySupplier(true);
+    protected DependencySupplier setupDependencySupplier() {
+        return new ProductionDependencySupplier(true);
     }
 
     public DependencySupplier getDependencySupplier() {
