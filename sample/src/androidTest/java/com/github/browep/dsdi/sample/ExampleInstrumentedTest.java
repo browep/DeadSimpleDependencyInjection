@@ -1,4 +1,4 @@
-package com.github.browep.dsdi;
+package com.github.browep.dsdi.sample;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

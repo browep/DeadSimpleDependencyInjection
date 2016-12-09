@@ -1,15 +1,17 @@
-apply plugin: 'com.android.application'
+apply plugin: 'com.android.library'
 
 android {
     compileSdkVersion 25
     buildToolsVersion "25.0.1"
+
     defaultConfig {
-        applicationId "com.github.browep.dsdi.sample"
         minSdkVersion 15
         targetSdkVersion 25
         versionCode 1
         versionName "1.0"
+
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
     }
     buildTypes {
         release {
@@ -26,10 +28,6 @@ dependencies {
     })
     compile 'com.android.support:appcompat-v7:25.0.1'
     testCompile 'junit:junit:4.12'
-
-    compile project(":library")
-    compile 'com.squareup.retrofit2:retrofit:2.1.0'
-    // https://mvnrepository.com/artifact/com.squareup.retrofit2/converter-gson
-    compile group: 'com.squareup.retrofit2', name: 'converter-gson', version: '2.1.0'
-
+    // https://mvnrepository.com/artifact/javax.inject/javax.inject
+    compile group: 'javax.inject', name: 'javax.inject', version: '1'
 }
