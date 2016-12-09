@@ -40,7 +40,7 @@ public abstract class DependencySupplier {
     public static DependencySupplier initializeSupplier(Boolean log, String className) {
         try {
             if(log) {
-                Log.d(TAG, "initializing: " + className + " as depedency supplier");
+                Log.d(TAG, "initializing: " + className + " as dependency supplier");
             }
             Class<DependencySupplier> dependencySupplierClass = (Class<DependencySupplier>) Class.forName(className);
             Constructor<DependencySupplier> supplierConstructor = dependencySupplierClass.getConstructor(Boolean.class);
