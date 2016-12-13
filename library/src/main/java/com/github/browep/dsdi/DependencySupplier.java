@@ -10,7 +10,8 @@ import java.lang.reflect.InvocationTargetException;
 import javax.inject.Inject;
 
 /**
- *
+ *  Abstract class that should be overridden for each type of supplier you want ( Prod, Test, Dev
+ *  etc. )
  */
 
 public abstract class DependencySupplier {
@@ -58,7 +59,15 @@ public abstract class DependencySupplier {
         }
     }
 
-    public abstract Object supply(Class aClass) throws IllegalArgumentException;
+    /**
+     * override this method to return an instance of the injectionClass
+     * @param injectee this is the object that contains the fields to be injected, should not be
+     *                 modified
+     * @param injectionClass the is the Class of the object that needs to be supplied
+     * @return
+     * @throws IllegalArgumentException
+     */
+    public abstract Object supply(Object injectee, Class injectionClass) throws IllegalArgumentException;
 
     /**
      * call this on all classes that have @Inject annotations
@@ -74,7 +83,7 @@ public abstract class DependencySupplier {
                 if (field.isAnnotationPresent(Inject.class)) {
                     field.setAccessible(true);
                     Class fieldClass = field.getType();
-                    Object supply = supply(fieldClass);
+                    Object supply = supply(obj, fieldClass);
                     log("injection: (" + obj +") " + field.getName() +" -> " + supply);
                     try {
                         field.set(obj, supply);

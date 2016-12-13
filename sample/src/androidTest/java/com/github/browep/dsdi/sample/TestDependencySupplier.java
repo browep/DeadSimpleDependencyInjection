@@ -31,13 +31,13 @@ public class TestDependencySupplier extends ProductionDependencySupplier {
     }
 
     @Override
-    public Object supply(Class aClass) throws IllegalArgumentException {
+    public Object supply(Object o, Class aClass) throws IllegalArgumentException {
         if (aClass.equals(NetworkAdapter.class)) {
             return new MockNetworkAdapter();
         } else if (aClass.equals(Dao.class)) {
             return dao;
         } else {
-            return super.supply(aClass);
+            return super.supply(o, aClass);
         }
     }
 

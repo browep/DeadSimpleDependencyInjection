@@ -34,7 +34,7 @@ public class ProductionDependencySupplier extends DependencySupplier {
     }
 
     @Override
-    public Object supply(Class aClass) {
+    public Object supply(Object o, Class aClass) {
         if (aClass.equals(NetworkAdapter.class)) {
            return networkAdapter;
         } else if (aClass.equals(Dao.class)) {
