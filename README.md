@@ -89,11 +89,11 @@ public class ProductionDependencySupplier extends DependencySupplier {
     }
 
     @Override
-    public Object supply(Class aClass) {
-        if (aClass.equals(NetworkAdapter.class)) {
+    public Object supply(Object injectee, Class injectionClass) {
+        if (injectionClass.equals(NetworkAdapter.class)) {
            return networkAdapter;
         } else {
-            throw new IllegalArgumentException("could not supply: " + aClass);
+            throw new IllegalArgumentException("could not supply: " + injectionClass);
         }
     }
 }
