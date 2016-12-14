@@ -1,6 +1,5 @@
 package com.github.browep.dsdi;
 
-import android.support.annotation.NonNull;
 import android.util.Log;
 
 import java.lang.reflect.Constructor;
@@ -37,7 +36,6 @@ public abstract class DependencySupplier {
      * @param className
      * @return
      */
-    @NonNull
     public static DependencySupplier initializeSupplier(Boolean log, String className) {
         try {
             if(log) {
