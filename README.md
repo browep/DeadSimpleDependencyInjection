@@ -15,9 +15,31 @@ The impetus for this library has been the many failed attempts at trying to get 
 
 ### Getting Started
 
-##### Gradle
+##### Gradle dependency
 
-add a submodule 
+in the root `build.gradle`
+
+```
+allprojects {
+  repositories {
+    ...
+    maven { url 'https://jitpack.io' }
+  }
+}
+```
+
+in the project `build.gradle`
+
+```
+dependencies {
+  ...
+	compile 'com.github.browep:DeadSimpleDependencyInjection:release-beta-4'
+}
+```
+
+##### Gradle library
+
+add a submodule
 `git submodule add git@github.com:browep/DeadSimpleDependencyInjection.git libraries/dsdi`
 
 add the `libaries/dsdi/library` folder as dependency
@@ -38,7 +60,7 @@ dependencies {
 
 The core of the library is just one file.  It can be copied into your project without anything else `/library/src/main/java/com/github/browep/dsdi/DependencySupplier.java`
 
-##### Injection
+### Injection
 
 There are two components to DSDI:
 * Injectee, a class that requires dependencies and uses `@Inject` to annotate them.
@@ -48,9 +70,9 @@ We will setup our Injector in the Application object and then get a reference fr
 
 ````
 public class SampleApplication extends android.app.Application {
- 
+
     private DependencySupplier dependencySupplier;
-    
+
     @Override
     public void onCreate() {
         super.onCreate();
@@ -117,7 +139,7 @@ public class MainActivity extends AppCompatActivity {
         ((SampleApplication) getApplicationContext()).getDependencySupplier().inject(this);
     }
 
-  
+
 }
 ````
 
@@ -125,6 +147,22 @@ That's it!
 
 That field will then be supplied by the DependencySupplier.  
 
+### Issues
 
+Please use the issue tracker.
 
+------
 
+Copyright 2016 Paul Brower
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
