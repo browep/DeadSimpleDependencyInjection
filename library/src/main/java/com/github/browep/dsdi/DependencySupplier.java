@@ -127,12 +127,16 @@ public abstract class DependencySupplier {
     /**
      *
      * Explicit declaration that a class has @Inject fields.  Use this for a superclass that wants
-     * to be injected.  Not needed if the class will not be extended
+     * to be injected.  Not needed if the class will not be extended.  The injector will continue
+     * to look for @Inject fields up the hierarchy until it finds a class without this annotation.
+     *
+     * Use this annotation on a super class ( e.g. BaseActivity ) so that the injector can go
+     * looking for it.
      *
      * Created by paulbrower on 12/20/16.
      */
     @Retention(RetentionPolicy.RUNTIME)
     @Target(ElementType.TYPE)
-    public static @interface HasInjectees {
+    public @interface HasInjectees {
     }
 }
