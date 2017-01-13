@@ -114,7 +114,7 @@ public abstract class DependencySupplier {
         // if the superclass isnt Object and it has the @HasInjectees annotation, inject it as well
         Class<?> superclass = objClass.getSuperclass();
         if (superclass != Object.class && superclass.isAnnotationPresent(HasInjectees.class)) {
-            innerInject(obj, obj.getClass().getSuperclass());
+            innerInject(obj, superclass);
         }
     }
 
