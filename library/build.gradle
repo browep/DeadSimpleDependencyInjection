@@ -2,7 +2,26 @@ apply plugin: 'java-library'
 
 String slf4jApiVersion = rootProject.ext.has('slf4jApiVersion') ? rootProject.ext.slf4jApiVersion : "1.7.25"
 
-println("slf4jApiVersion: " + slf4jApiVersion )
+apply plugin: 'java'
+apply plugin: 'maven'
+
+sourceCompatibility = 1.8 // java 8
+targetCompatibility = 1.8
+
+task sourcesJar(type: Jar, dependsOn: classes) {
+    classifier = 'sources'
+    from sourceSets.main.allSource
+}
+
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    classifier = 'javadoc'
+    from javadoc.destinationDir
+}
+
+artifacts {
+    archives sourcesJar
+    archives javadocJar
+}
 
 dependencies {
     implementation group: 'javax.inject', name: 'javax.inject', version: '1'
