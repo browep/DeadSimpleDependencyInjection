@@ -6,7 +6,7 @@ apply plugin: 'java'
 apply plugin: 'maven'
 
 group = 'com.github.browep'
-version = "1.0.2"
+version = "1.0.4"
 
 sourceCompatibility = 1.8 // java 8
 targetCompatibility = 1.8

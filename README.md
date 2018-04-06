@@ -33,7 +33,7 @@ in the project `build.gradle`
 ```
 dependencies {
   ...
-	compile 'com.github.browep:DeadSimpleDependencyInjection:release-beta-4'
+	compile 'com.github.browep:DeadSimpleDependencyInjection:1.0.4'
 }
 ```
 
@@ -96,11 +96,7 @@ public class ProductionDependencySupplier extends DependencySupplier {
     private NetworkAdapter networkAdapter;
 
     public ProductionDependencySupplier() {
-        this(false);
-    }
-
-    public ProductionDependencySupplier(Boolean log) {
-        super(log);
+        super();
 
         Retrofit retrofit =  new Retrofit.Builder()
                 .baseUrl("https://api.github.com/")

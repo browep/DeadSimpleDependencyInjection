@@ -125,7 +125,7 @@ public abstract class DependencySupplier {
     /**
      * optional interface that allows for objects ( like an Application ) to inject
      */
-    interface CanInject {
+    public interface CanInject {
         void inject(Object obj);
     }
 }
