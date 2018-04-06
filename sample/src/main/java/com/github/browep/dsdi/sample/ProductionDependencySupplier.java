@@ -1,7 +1,5 @@
 package com.github.browep.dsdi.sample;
 
-import android.app.Application;
-
 import com.github.browep.dsdi.DependencySupplier;
 
 import retrofit2.Retrofit;
@@ -17,11 +15,7 @@ public class ProductionDependencySupplier extends DependencySupplier {
     private Dao dao;
 
     public ProductionDependencySupplier() {
-        this(false);
-    }
-
-    public ProductionDependencySupplier(Boolean log) {
-        super(log);
+        super();
 
         Retrofit retrofit =  new Retrofit.Builder()
                 .baseUrl("https://api.github.com/")

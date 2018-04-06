@@ -39,7 +39,7 @@ public class SampleApplication extends android.app.Application {
             className = ProductionDependencySupplier.class.getCanonicalName();
         }
 
-        return DependencySupplier.initializeSupplier(true, className);
+        return DependencySupplier.initializeSupplier(className);
     }
 
     public DependencySupplier getDependencySupplier() {

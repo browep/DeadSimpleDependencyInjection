@@ -1,19 +1,12 @@
 package com.github.browep.dsdi.sample;
 
-import com.github.browep.dsdi.DependencySupplier;
 import com.github.browep.dsdi.sample.model.Repo;
 
-import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
 
-import okhttp3.Request;
-import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
-import retrofit2.http.Path;
 
 /**
  * create test dependencies for testing.  No calls should go out over the network, nothing persisted
@@ -24,8 +17,8 @@ public class TestDependencySupplier extends ProductionDependencySupplier {
 
     private final Dao dao;
 
-    public TestDependencySupplier(Boolean log) {
-        super(log);
+    public TestDependencySupplier() {
+        super();
 
         dao = new TestDao();
     }

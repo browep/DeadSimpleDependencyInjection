@@ -1,6 +1,7 @@
 package com.github.browep.dsdi;
 
-import android.util.Log;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -19,36 +20,23 @@ import javax.inject.Inject;
 
 public abstract class DependencySupplier {
 
-    public static final String TAG = DependencySupplier.class.getCanonicalName();
-    private boolean log = false;
+    Logger logger = LoggerFactory.getLogger(DependencySupplier.class.getCanonicalName());
 
     public DependencySupplier() {
 
     }
 
     /**
-     *
-     * @param log whether the injector should log what its doing, useful for debugging
-     */
-    public DependencySupplier(Boolean log) {
-        this.log = log;
-    }
-
-    /**
      * Helper/Util method.
      * dyanmically load the {@link DependencySupplier} class and initialize it
-     * @param log
      * @param className
      * @return
      */
-    public static DependencySupplier initializeSupplier(Boolean log, String className) {
+    public static DependencySupplier initializeSupplier(String className) {
         try {
-            if(log) {
-                Log.d(TAG, "initializing: " + className + " as dependency supplier");
-            }
             Class<DependencySupplier> dependencySupplierClass = (Class<DependencySupplier>) Class.forName(className);
-            Constructor<DependencySupplier> supplierConstructor = dependencySupplierClass.getConstructor(Boolean.class);
-            return supplierConstructor.newInstance(log);
+            Constructor<DependencySupplier> supplierConstructor = dependencySupplierClass.getConstructor();
+            return supplierConstructor.newInstance();
         } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);
         } catch (NoSuchMethodException e) {
@@ -102,7 +90,7 @@ public abstract class DependencySupplier {
                 field.setAccessible(true);
                 Class fieldClass = field.getType();
                 Object supply = supply(obj, fieldClass);
-                log("injection: (" + obj +") " + field.getName() +" -> " + supply);
+                logger.debug("injection: (" + obj +") " + field.getName() +" -> " + supply);
                 try {
                     field.set(obj, supply);
                 } catch (IllegalAccessException e) {
@@ -115,12 +103,6 @@ public abstract class DependencySupplier {
         Class<?> superclass = objClass.getSuperclass();
         if (superclass != Object.class && superclass.isAnnotationPresent(HasInjectees.class)) {
             innerInject(obj, superclass);
-        }
-    }
-
-    private void log(String logMsg) {
-        if(log) {
-            Log.d(getClass().getCanonicalName(), logMsg);
         }
     }
 
@@ -138,5 +120,12 @@ public abstract class DependencySupplier {
     @Retention(RetentionPolicy.RUNTIME)
     @Target(ElementType.TYPE)
     public @interface HasInjectees {
+    }
+
+    /**
+     * optional interface that allows for objects ( like an Application ) to inject
+     */
+    interface CanInject {
+        void inject(Object obj);
     }
 }

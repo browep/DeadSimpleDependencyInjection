@@ -2,7 +2,7 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 25
-    buildToolsVersion "25.0.1"
+    buildToolsVersion '27.0.3'
     defaultConfig {
         applicationId "com.github.browep.dsdi.sample"
         minSdkVersion 15
@@ -30,6 +30,9 @@ dependencies {
     })
     compile 'com.android.support:appcompat-v7:25.0.1'
     testCompile 'junit:junit:4.12'
+
+    implementation group: 'javax.inject', name: 'javax.inject', version: '1'
+    implementation group: 'org.slf4j', name: 'slf4j-api', version: '1.7.25'
 
     compile project(":library")
     compile 'com.squareup.retrofit2:retrofit:2.1.0'
